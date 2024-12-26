@@ -18,10 +18,20 @@
   overflow: hidden;
 }
 .home-screen {
-  height: 100vh; /* Высота экрана */
+  height: calc(100vh - env(safe-area-inset-top)); /* Высота экрана минус шапка */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Разделение контента и нижней панели */
+  justify-content: space-between; /* Разделяем содержимое и нижнюю панель */
+  overflow: hidden; /* Убираем прокрутку, если не нужна */
+}
+
+.ul-footer-links {
+  position: relative; /* Или fixed, если требуется */
+  background-color: black;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  width: 100%;
 }
 .home-content {
   background: linear-gradient(
