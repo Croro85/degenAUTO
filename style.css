@@ -17,6 +17,12 @@
   position: relative;
   overflow: hidden;
 }
+.home-screen {
+  height: 100vh; /* Высота экрана */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Разделение контента и нижней панели */
+}
 .home-content {
   background: linear-gradient(
       181.54deg,
