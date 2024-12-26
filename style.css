@@ -28,7 +28,6 @@
 .ul-footer-links {
   position: relative; /* Или fixed, если требуется */
   padding: 10px;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   z-index: 100;
   width: 100%;
 }
@@ -571,4 +570,115 @@
   height: 24px;
   position: relative;
   overflow: visible;
+}
+
+/* Общие стили для модального окна */
+.modal {
+  position: fixed; /* Закрепляем окно */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 90vh; /* Максимальная высота - 90% экрана */
+  background: linear-gradient(
+      181.54deg,
+      rgba(15, 15, 15, 0.95) 0%,
+      rgba(154, 12, 12, 0.95) 100%
+  );
+  border-radius: 16px 16px 0 0;
+  z-index: 1000;
+  padding: 16px;
+  display: none; /* Скрыто по умолчанию */
+  overflow-y: auto; /* Добавляем прокрутку при необходимости */
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.5); /* Тень для модального окна */
+}
+
+.modal.visible {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-i-os-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Разделительная линия */
+}
+
+.modal-i-os-header .title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.modal-i-os-header img.close-28 {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05); /* Легкий фон для выделения */
+  border-radius: 10px;
+}
+
+.card img.img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.text {
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 16px; /* Отступы для текста */
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s; /* Эффекты для кнопок */
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.button-i-os-pred-1 {
+  background-color: #333333;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.button-i-os-pred-2 {
+  background: linear-gradient(to right, #ad0000, #ff0000);
+  border: 2px solid rgba(252, 246, 209, 1); /* Градиентная обводка */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
