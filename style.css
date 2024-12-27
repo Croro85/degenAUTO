@@ -304,7 +304,7 @@
   width: 300px;
   height: 278px;
   position: absolute;
-  left: 29px;
+  justify-content: center;
   top: 66px;
   object-fit: cover;
 }
@@ -573,23 +573,25 @@
 }
 
 /* Общие стили для модального окна */
+
 .modal {
-  position: fixed; /* Закрепляем окно */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  max-height: 90vh; /* Максимальная высота - 90% экрана */
   background: linear-gradient(
       181.54deg,
-      rgba(15, 15, 15, 0.95) 0%,
-      rgba(154, 12, 12, 0.95) 100%
-  );
-  border-radius: 16px 16px 0 0;
+      rgba(15, 15, 15, 0.5) 0%,
+      rgba(154, 12, 12, 0.5) 100%
+    ),
+    linear-gradient(to left, #0f0f0f, #0f0f0f);
+  border-radius: 16px 16px 0px 0px;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: -369px;
+  top: 369px;
+  overflow: hidden;
   z-index: 1000;
   padding: 16px;
-  display: none; /* Скрыто по умолчанию */
-  overflow-y: auto; /* Добавляем прокрутку при необходимости */
-  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.5); /* Тень для модального окна */
+  display: none;
+  overflow-y: auto;
 }
 
 .modal.visible {
@@ -599,86 +601,233 @@
 }
 
 .modal-i-os-header {
+  padding: 8px 0px 8px 0px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 6px;
   align-items: center;
-  padding: 8px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Разделительная линия */
+  justify-content: center;
+  height: 60px;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
 }
-
-.modal-i-os-header .title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
+.drag-indicator-do-not-delete {
+  background: var(--custom-divider, rgba(255, 255, 255, 0.05));
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 36px;
+  height: 4px;
+  position: relative;
 }
-
-.modal-i-os-header img.close-28 {
+.title2 {
+  color: var(--textcolor, #ffffff);
+  text-align: center;
+  font-family: var(
+    --san-francisco-text-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--san-francisco-text-semibold-font-size, 17px);
+  line-height: var(--san-francisco-text-semibold-line-height, 22px);
+  letter-spacing: var(--san-francisco-text-semibold-letter-spacing, -0.4px);
+  font-weight: var(--san-francisco-text-semibold-font-weight, 600);
+  position: relative;
+}
+.close-28 {
+  flex-shrink: 0;
   width: 28px;
   height: 28px;
-  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  translate: 0 -50%;
+  overflow: visible;
 }
-
-.modal-content {
+.card2 {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.05); /* Легкий фон для выделения */
-  border-radius: 10px;
-}
-
-.card img.img {
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 60px;
+}
+.frame-1 {
+  padding: 0px 16px 0px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.img {
+  background: linear-gradient(to left, #d9d9d9, #d9d9d9);
   border-radius: 10px;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 156px;
+  position: relative;
   object-fit: cover;
 }
-
-.text {
-  font-size: 16px;
-  color: #ffffff;
-  text-align: center;
-  line-height: 1.5;
-  padding: 0 16px; /* Отступы для текста */
-}
-
-.buttons {
+.text2 {
+  padding: 0px 16px 0px 16px;
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  margin-top: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
 }
-
-.buttons button {
+.degen-santa-predicts {
+  color: var(--textcolor, #ffffff);
+  text-align: left;
+  font-family: var(
+    --san-francisco-headline-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--san-francisco-headline-semibold-font-size, 19px);
+  line-height: var(--san-francisco-headline-semibold-line-height, 24px);
+  letter-spacing: var(
+    --san-francisco-headline-semibold-letter-spacing,
+    -0.45px
+  );
+  font-weight: var(--san-francisco-headline-semibold-font-weight, 600);
+  position: relative;
+  align-self: stretch;
+}
+.prediction-content {
+  color: var(--textcolor, #ffffff);
+  text-align: left;
+  font-family: "SfProText-Regular", sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.23px;
+  font-weight: 400;
+  position: relative;
+  align-self: stretch;
+}
+.buttons {
+  padding: 0px 16px 0px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 27px;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.button-i-os2 {
+border-radius: 10px;
+border-width: 2px;
+border-style: solid;
+border-image: linear-gradient(
+  180deg,
+  rgba(252, 246, 209, 1) 0%,
+  rgb(203, 196, 186) 10.41666641831398%,
+  rgb(240, 237, 229) 25%,
+  rgb(143, 138, 132) 69.79166865348816%,
+  rgb(52, 40, 18) 85.41666865348816%,
+  rgba(252, 240, 209, 1) 100%
+);
+border-image-slice: 1;
+padding: 15px 12px 15px 12px;
+display: flex;
+flex-direction: row;
+gap: 10px;
+align-items: center;
+justify-content: center;
+flex: 1;
+height: 50px;
+min-width: 50px;
+position: relative;
+overflow: hidden;
+}
+.button-i-os3 {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 218, 218, 0.4) 1.0416666977107525%,
+      rgba(148, 30, 30, 0.4) 4.16666679084301%,
+      rgba(255, 219, 219, 0.4) 82.8125%,
+      rgba(234, 133, 133, 0.4) 93.75%,
+      rgba(251, 209, 209, 0.4) 97.91666865348816%,
+      rgba(189, 75, 75, 0.4) 99.98999834060669%,
+      rgba(236, 163, 163, 0.4) 100%
+    ),
+    linear-gradient(to left, #ad0000, #ad0000);
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(
+    180deg,
+    rgba(252, 246, 209, 1) 0%,
+    rgba(189, 148, 87, 1) 10.41666641831398%,
+    rgba(227, 202, 137, 1) 25%,
+    rgba(254, 232, 200, 1) 69.79166865348816%,
+    rgba(77, 58, 26, 1) 85.41666865348816%,
+    rgba(252, 240, 209, 1) 100%
+  );
+  border-image-slice: 1;
+  padding: 15px 12px 15px 12px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
   flex: 1;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s; /* Эффекты для кнопок */
+  height: 50px;
+  min-width: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.flare {
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  border-radius: 50%;
+  flex-shrink: 0;
+  width: 37px;
+  height: 37px;
+  position: absolute;
+  left: 351px;
+  top: 318px;
+  mix-blend-mode: color-dodge;
 }
 
-.buttons button:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+
+
+
+
+/* старый код для js
+.modal {
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 90vh; 
+  min-height: 500px; 
+  z-index: 1000;
+  padding: 16px;
+  display: none;
+  overflow-y: auto; 
+  
 }
 
-.button-i-os-pred-1 {
-  background-color: #333333;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+.modal.visible {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-
-.button-i-os-pred-2 {
-  background: linear-gradient(to right, #ad0000, #ff0000);
-  border: 2px solid rgba(252, 246, 209, 1); /* Градиентная обводка */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
+*/
