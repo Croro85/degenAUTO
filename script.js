@@ -1,6 +1,17 @@
 console.log("JavaScript подключён!");
 
 document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.querySelector(".loading-screen");
+  
+    window.addEventListener("load", () => {
+      loadingScreen.style.opacity = "0";
+      setTimeout(() => {
+        loadingScreen.style.display = "none";
+      }, 500); // Плавное скрытие за 0.5 секунды
+    });
+  });
+
+document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal");
     const openModalButton = document.querySelector(".button-i-os"); // Основная кнопка открытия модалки
     const closeModalButton = document.getElementById("close-modal"); // Кнопка закрытия модалки
