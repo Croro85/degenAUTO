@@ -13,7 +13,6 @@
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.05);
   border-width: 1px;
-  height: 844px;
   position: relative;
   overflow: hidden;
 }
@@ -586,13 +585,14 @@
   position: absolute;
   right: 0px;
   left: 0px;
-  bottom: -369px;
-  top: 369px;
+  bottom: 0px;
+  min-height: 450px;
+  max-height: 90vh;
   overflow: hidden;
   z-index: 1000;
   padding: 16px;
   display: none;
-  overflow-y: auto;
+  overflow-y: none;
 }
 
 .modal.visible {
