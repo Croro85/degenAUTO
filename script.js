@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal");
+    const skeleton = document.getElementById("skeleton"); // Скелетон
+    const modalContent = document.getElementById("modal-content"); // Блок контента
     const openModalButton = document.querySelector(".button-i-os"); // Основная кнопка открытия модалки
     const closeModalButton = document.getElementById("close-modal"); // Кнопка закрытия модалки
     const askAgainButton = document.getElementById("ask-again"); // Кнопка "Ask Again"
@@ -35,24 +37,49 @@ document.addEventListener("DOMContentLoaded", () => {
         return predictions[randomIndex];
     };
 
-    // Открытие модального окна с новым предсказанием
+    // Функция показа скелетона
+    const showSkeleton = () => {
+        console.log("Показываем скелетон");
+        skeleton.style.display = "flex";
+        modalContent.style.display = "none";
+    };
+
+    // Функция скрытия скелетона
+    const hideSkeleton = () => {
+        console.log("Скрываем скелетон");
+        skeleton.style.display = "none";
+        modalContent.style.display = "flex";
+    };
+
+    // Открытие модального окна
     const openModalWithPrediction = () => {
-        const randomPrediction = getRandomPrediction();
-        predictionText.textContent = randomPrediction; // Устанавливаем новое предсказание
+        console.log("Открытие модального окна...");
+        showSkeleton();
         modal.classList.add("visible");
-        console.log("Модальное окно открыто с предсказанием:", randomPrediction);
+
+        // Задержка перед показом содержимого
+        setTimeout(() => {
+            const newPrediction = getRandomPrediction();
+            predictionText.textContent = newPrediction;
+            console.log("Новое предсказание:", newPrediction);
+            hideSkeleton();
+        }, 700); // 0,7 секунды задержки
     };
 
     // Событие на основную кнопку открытия
-    openModalButton.addEventListener("click", () => {
-        console.log("Кнопка открытия нажата!");
-        openModalWithPrediction();
-    });
+    openModalButton.addEventListener("click", openModalWithPrediction);
 
     // Событие на кнопку "Ask Again"
     askAgainButton.addEventListener("click", () => {
         console.log("Кнопка 'Ask Again' нажата!");
-        openModalWithPrediction();
+        showSkeleton();
+
+        setTimeout(() => {
+            const newPrediction = getRandomPrediction();
+            predictionText.textContent = newPrediction;
+            console.log("Новое предсказание (Ask Again):", newPrediction);
+            hideSkeleton();
+        }, 700); // 0,7 секунды задержки
     });
 
     // Закрытие модального окна

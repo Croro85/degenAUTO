@@ -601,6 +601,33 @@
   gap: 16px;
 }
 
+/* Скелетон */
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Скрыто по умолчанию */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9); /* Затемнённый фон */
+  z-index: 1100; /* Поверх содержимого модального окна */
+}
+
+.skeleton img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+/* Основное содержимое модального окна */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .modal-i-os-header {
   padding: 8px 0px 8px 0px;
   display: flex;
@@ -644,7 +671,6 @@
   right: 16px;
   top: 50%;
   translate: 0 -50%;
-  overflow: visible;
 }
 .card2 {
   display: flex;
@@ -714,7 +740,7 @@
   line-height: 20px;
   letter-spacing: -0.23px;
   font-weight: 400;
-  min-height: 80px;
+  min-height: 50px;
   position: relative;
   align-self: stretch;
 }
@@ -872,31 +898,6 @@ overflow: hidden;
     opacity: 1;
   }
 }
-
-/*
-.card-skeleton {
-  text-align: center;
-}
-
-.img-skeleton {
-  width: 100%;
-  height: 156px;
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 10px;
-  margin-bottom: 16px;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-*/
 
 
 
