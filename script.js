@@ -11,6 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("Telegram WebApp initialized");
+    Telegram.WebApp.ready(); // Уведомляем Telegram, что приложение готово
+
+    console.log("initData:", Telegram.WebApp.initData);
+    console.log("initDataUnsafe:", Telegram.WebApp.initDataUnsafe);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal");
     const skeleton = document.getElementById("skeleton"); // Скелетон
