@@ -148,15 +148,17 @@
 
       <div class="ul-footer-links">
         <div class="ul-links">
-          <a href="https://x.com/DegenSantaClub" target="_blank" rel="noopener noreferrer">  
-          <img class="link" src="link0.svg" /> </a>
-          <a href="https://t.me/DegenSantaChat" target="_blank" rel="noopener noreferrer">
-          <img class="link" src="group0.svg" /></a>
-          <a href="https://degensanta.club/" target="_blank" rel="noopener noreferrer">  
-          <img class="link3" src="link2.svg" /></a>
+            <a href="https://x.com/DegenSantaClub" target="_blank" rel="noopener noreferrer">  
+                <img class="linkX" src="link0.svg" />
+            </a>
+            <a href="https://t.me/DegenSantaChat" target="_blank" rel="noopener noreferrer">
+                <img class="linkTG" src="group0.svg" />
+            </a>
+            <a href="https://degensanta.club/" target="_blank" rel="noopener noreferrer">  
+                <img class="linkSite" src="link2.svg" />
+            </a>
         </div>
-      </div>
-
+    </div>
       
 
       <div class="modal" id="modal">
@@ -203,5 +205,48 @@
   </div>
   
   <script src="script.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC5N0BLv3KT2eA_3IdXmK3qVo3-GvBZjpk",
+      authDomain: "degensanta1.firebaseapp.com",
+      databaseURL: "https://degensanta1-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "degensanta1",
+      storageBucket: "degensanta1.firebasestorage.app",
+      messagingSenderId: "33842563471",
+      appId: "1:33842563471:web:d27c4d17172a0fba7623fa"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const logEvent = (eventName, details = {}) => {
+        const eventData = {
+            eventName,
+            details,
+            timestamp: new Date().toISOString()
+        };
+        const eventsRef = ref(database, "events");
+        push(eventsRef, eventData)
+            .then(() => console.log(`Событие '${eventName}' успешно записано!`))
+            .catch((error) => console.error("Ошибка записи события:", error));
+    };
+
+    document.querySelector(".button-i-os").addEventListener("click", () => logEvent("Give me a prediction, Santa"));
+    document.getElementById("ask-again").addEventListener("click", () => logEvent("Ask again"));
+    document.querySelector(".button-i-os3").addEventListener("click", () => logEvent("Follow the Fate"));
+
+    document.querySelectorAll(".ul-links img").forEach(link => {
+        link.addEventListener("click", (event) => {
+            const className = event.target.className;
+            const linkName = className.includes("linkX") ? "Twitter" :
+                             className.includes("linkTG") ? "Telegram" :
+                             className.includes("linkSite") ? "Website" : "Unknown";
+            logEvent(`Clicked Link: ${linkName}`);
+        });
+    });
+</script>
 </body>
 </html>
