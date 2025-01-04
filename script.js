@@ -1,17 +1,31 @@
 console.log("JavaScript подключён!");
 
 document.addEventListener("DOMContentLoaded", () => {
-    const loadingScreen = document.querySelector(".loading-screen");
-  
-    window.addEventListener("load", () => {
-      loadingScreen.style.opacity = "0";
-      setTimeout(() => {
-        loadingScreen.style.display = "none";
-      }, 500); // Плавное скрытие за 0.5 секунды
-    });
-  });
+    // Генерация или восстановление sessionId
+    let sessionId = localStorage.getItem("sessionId");
 
-  document.addEventListener("DOMContentLoaded", () => {
+    if (!sessionId) {
+        sessionId = generateSessionId();
+        localStorage.setItem("sessionId", sessionId);
+        console.log("Новый идентификатор сессии:", sessionId);
+    } else {
+        console.log("Идентификатор сессии найден:", sessionId);
+    }
+
+    // Функция генерации уникального идентификатора
+    function generateSessionId() {
+        return Math.random().toString(36).substr(2, 9) + Date.now();
+    }
+
+    const loadingScreen = document.querySelector(".loading-screen");
+
+    window.addEventListener("load", () => {
+        loadingScreen.style.opacity = "0";
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+        }, 500); // Плавное скрытие за 0.5 секунды
+    });
+
     console.log("Telegram WebApp initialized");
     Telegram.WebApp.ready(); // Уведомляем Telegram, что приложение готово
 
@@ -74,8 +88,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 700); // 0,7 секунды задержки
     };
 
+    // Логирование событий
+    const logEvent = (eventName, details = {}) => {
+        const sessionId = localStorage.getItem("sessionId") || "unknown";
+        const eventData = {
+            sessionId,
+            eventName,
+            details,
+            timestamp: new Date().toISOString(),
+        };
+
+        console.log(`Логируем событие '${eventName}':`, eventData);
+        // Здесь можно добавить отправку в Firebase или другой сервис
+    };
+
     // Событие на основную кнопку открытия
-    openModalButton.addEventListener("click", openModalWithPrediction);
+    openModalButton.addEventListener("click", () => {
+        openModalWithPrediction();
+        logEvent("Give me a prediction, Santa");
+    });
 
     // Событие на кнопку "Ask Again"
     askAgainButton.addEventListener("click", () => {
@@ -87,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
             predictionText.textContent = newPrediction;
             console.log("Новое предсказание (Ask Again):", newPrediction);
             hideSkeleton();
+            logEvent("Ask again");
         }, 700); // 0,7 секунды задержки
     });
 
@@ -94,5 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModalButton.addEventListener("click", () => {
         console.log("Кнопка закрытия нажата!");
         modal.classList.remove("visible");
+        logEvent("Close modal");
     });
 });
