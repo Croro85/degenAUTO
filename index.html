@@ -210,34 +210,45 @@
     import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyC5N0BLv3KT2eA_3IdXmK3qVo3-GvBZjpk",
-      authDomain: "degensanta1.firebaseapp.com",
-      databaseURL: "https://degensanta1-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "degensanta1",
-      storageBucket: "degensanta1.firebasestorage.app",
-      messagingSenderId: "33842563471",
-      appId: "1:33842563471:web:d27c4d17172a0fba7623fa"
+        apiKey: "AIzaSyC5N0BLv3KT2eA_3IdXmK3qVo3-GvBZjpk",
+        authDomain: "degensanta1.firebaseapp.com",
+        databaseURL: "https://degensanta1-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "degensanta1",
+        storageBucket: "degensanta1.firebasestorage.app",
+        messagingSenderId: "33842563471",
+        appId: "1:33842563471:web:d27c4d17172a0fba7623fa"
     };
 
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
+    // Функция для логирования событий
     const logEvent = (eventName, details = {}) => {
+        // Получение информации о пользователе из Telegram Mini App
+        const userId = Telegram.WebApp.initDataUnsafe?.user?.id || "anonymous";
+        const username = Telegram.WebApp.initDataUnsafe?.user?.username || "unknown";
+
         const eventData = {
+            userId,
+            username,
             eventName,
             details,
             timestamp: new Date().toISOString()
         };
+
+        // Логирование события в Firebase Realtime Database
         const eventsRef = ref(database, "events");
         push(eventsRef, eventData)
-            .then(() => console.log(`Событие '${eventName}' успешно записано!`))
+            .then(() => console.log(`Событие '${eventName}' успешно записано!`, eventData))
             .catch((error) => console.error("Ошибка записи события:", error));
     };
 
+    // Логирование нажатий на кнопки
     document.querySelector(".button-i-os").addEventListener("click", () => logEvent("Give me a prediction, Santa"));
     document.getElementById("ask-again").addEventListener("click", () => logEvent("Ask again"));
     document.querySelector(".button-i-os3").addEventListener("click", () => logEvent("Follow the Fate"));
 
+    // Логирование нажатий на ссылки
     document.querySelectorAll(".ul-links img").forEach(link => {
         link.addEventListener("click", (event) => {
             const className = event.target.className;
