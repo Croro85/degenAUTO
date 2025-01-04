@@ -224,24 +224,30 @@
 
     // Функция для логирования событий
     const logEvent = (eventName, details = {}) => {
-        // Получение информации о пользователе из Telegram Mini App
-        const userId = Telegram.WebApp.initDataUnsafe?.user?.id || "anonymous";
-        const username = Telegram.WebApp.initDataUnsafe?.user?.username || "unknown";
+  console.log(`Logging event: ${eventName}`, details); // Отладка
+  let userId = "anonymous";
+  let username = "unknown";
 
-        const eventData = {
-            userId,
-            username,
-            eventName,
-            details,
-            timestamp: new Date().toISOString()
-        };
+  if (typeof Telegram !== "undefined" && Telegram.WebApp?.initDataUnsafe?.user) {
+    userId = Telegram.WebApp.initDataUnsafe.user.id || "anonymous";
+    username = Telegram.WebApp.initDataUnsafe.user.username || "unknown";
+  }
 
-        // Логирование события в Firebase Realtime Database
-        const eventsRef = ref(database, "events");
-        push(eventsRef, eventData)
-            .then(() => console.log(`Событие '${eventName}' успешно записано!`, eventData))
-            .catch((error) => console.error("Ошибка записи события:", error));
-    };
+  const eventData = {
+    userId,
+    username,
+    eventName,
+    details,
+    timestamp: new Date().toISOString()
+  };
+
+  console.log("Event data prepared:", eventData); // Отладка
+
+  const eventsRef = ref(database, "events");
+  push(eventsRef, eventData)
+    .then(() => console.log(`Событие '${eventName}' успешно записано!`, eventData))
+    .catch((error) => console.error("Ошибка записи события:", error));
+};
 
     // Логирование нажатий на кнопки
     document.querySelector(".button-i-os").addEventListener("click", () => logEvent("Give me a prediction, Santa"));
