@@ -51,6 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
         "Believe in the pump, and the pump will believe in you!",
         "Santa whispers: hodl tight, the sleigh is heading straight to the moon!",
         "A gift is coming your way: a green candle of joy!",
+        "Candle by candle, your fortune grows! Santa's sleigh is fueled by FOMO—just don't miss the ride!",
+        "Close your eyes and wish: the crypto fairy is Santa in disguise, about to drop a green rocket on your chart!",
+        "Santa's elves say HODL is magic. The longer you hold, the bigger the candy cane of profit!",
+        "When you stop checking the price every minute, Santa drops a surprise pump—patience pays!",
+        "Each red day is just Santa taking a break. He'll be back soon with a bag full of green candles!",
+        "Santa's reindeer only fly one way—straight up! Jump on board or risk missing the holiday cheer!",
+        "Bad trades are like lumps of coal. Shake 'em off, and watch Santa fill your stocking with fresh gains!",
+        "Santa's not a genie, but he can grant one wish: a rocket to the Moon, if you're ready to believe!",
+        "Degen Santa sees a future so bright, you'll need sunglasses to read your PnL!",
+        "A sleigh full of memecoins waits for the true believers— may Santa reward your faith in the pump!",
+
     ];
 
     // Функция для получения случайного предсказания
